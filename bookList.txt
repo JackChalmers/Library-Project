@@ -1,0 +1,30 @@
+Green, John
+The Fault in our Stars
+callNum1
+2014
+false
+Dashner, James
+The Fever Code
+callNum2
+2016
+true
+Palacio, R. J.
+Wonder
+callNum3
+2012
+false
+Riggs, Ransom
+Miss Peregrine's Home for Peculiar Children
+callNum4
+2013
+false
+Rowling, J.K.
+Harry Potter and the Sorcerer's Stone
+callNum5
+1999
+false
+Coben, Harlan
+Home
+callNum6
+2016
+true
