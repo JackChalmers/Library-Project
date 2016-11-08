@@ -11,9 +11,9 @@ import java.io.*;
 public class Library
 {
     private ArrayList<Book> libraryBooks;
-    String author,title,callNum;
-    int publishYr;
-    boolean chkdOut;
+    private String author,title,callNum;
+    private int publishYr;
+    private boolean chkdOut,newRelease;
     
     public Library()
     {
@@ -23,8 +23,6 @@ public class Library
     public void importLibrary() throws IOException, FileNotFoundException
     {        
         Scanner inF = new Scanner(new File("bookList.txt"));
-
-        
         while (inF.hasNextLine())
         {
             author = inF.nextLine();
@@ -34,14 +32,13 @@ public class Library
             chkdOut = inF.nextBoolean();
             inF.nextLine();
             
-            libraryBooks.add(new Book(title,author,callNum,publishYr,chkdOut));
+            libraryBooks.add(new Book(title,author,callNum,publishYr,chkdOut,newRelease));
         }
-  
     }
     
     public String toString()
     {
-        return ("Author: " + author + "\nTitle: " + title + "\nCall Number: " + callNum + "\nYear Published: " + publishYr + "\nAvailable to check out: " + chkdOut + "\n");
+        return ("Author: " + author + "\nTitle: " + title + "\nCall Number: " + callNum + "\nYear Published: " + publishYr + "\nAvailable to check out: " + chkdOut + "\n\n");
     }
     
     
@@ -91,7 +88,7 @@ public class Library
         String bookOut = scan.nextLine();
         for(int i = 0; i < libraryBooks.size(); i++)
         {
-            if(libraryBooks.get(i).getTitle().toLowerCase().contains(bookOut.toLowerCase()) && !libraryBooks.get(i).getIsCheckedOut())
+            if(libraryBooks.get(i).getCallNum().toLowerCase().contains(bookOut.toLowerCase()) && !libraryBooks.get(i).getIsCheckedOut())
             {
                 libraryBooks.get(i).setIsCheckedOut(true);
                 System.out.println("Thank you for checking out " + libraryBooks.get(i).toString());
@@ -100,24 +97,23 @@ public class Library
                 System.out.println("Sorry, That book is not available to be checked out");
         }
     }
-    /*
+    
     public void checkIn()
     {
-        
+        Scanner scan = new Scanner(System.in);
+        String bookIn = scan.nextLine();
+        for(int i = 0; i < libraryBooks.size(); i++)
+            if(libraryBooks.get(i).getCallNum().toLowerCase().contains(bookIn.toLowerCase()) && libraryBooks.get(i).getIsCheckedOut())
+            {
+                libraryBooks.get(i).setIsCheckedOut(false);
+                System.out.println("Thank you for checking in " + libraryBooks.get(i).toString());
+            }
+            else
+                System.out.println("Sorry, that is not a book at this library");
     }
-    */
-   
-
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+    public void exitLibrary()
+    {
+        System.out.println("\fThank You For Visiting the Library Of Babel! Come Again Soon!");
+    }
 }
